@@ -19,7 +19,7 @@ export class App extends Component {
   };
 
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     const prevQuery = prevState.searchQuery;
     const nextQuery = this.state.searchQuery;
     const prevPage = prevState.page;
@@ -28,8 +28,8 @@ export class App extends Component {
     if (prevQuery !== nextQuery || prevPage !== nextPage) {
       this.setState({ status: 'pending' });
 
-      api.fetchImages(nextQuery, nextPage).then(r => {
-        const resp = r.hits.map(({ largeImageURL, tags, webformatURL, id }) => {
+      api.fetchImages(nextQuery, nextPage).then(response => {
+        const resp = response.hits.map(({ largeImageURL, tags, webformatURL, id }) => {
           return { largeImageURL, tags, webformatURL, id };
         });
 

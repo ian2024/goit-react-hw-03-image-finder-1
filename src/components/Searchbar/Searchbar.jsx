@@ -13,7 +13,7 @@ export class Searchbar extends Component {
     handleSubmit = e => {
         e.preventDefault();
 
-        if (this.state.searchQuery.length > 0) {
+        if (this.state.searchQuery === '') {
             return;
         }
         this.props.onSubmit(this.state.searchQuery);
